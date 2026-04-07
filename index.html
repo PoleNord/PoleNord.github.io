@@ -28,9 +28,26 @@
                 <li data-map="vertigo">Vertigo</li>
                 <li data-map="train">Train</li>
                 <li data-map="cache">Cache</li>
+                <li data-map="inferno">Inferno</li>
                 <li data-map="sanctum">Sanctum</li>
             </ul>
+            <div class="switch-row">
+                <label class="switch">
+                    <input type="checkbox" id="toggle-nades" checked>
+                    <span class="slider"></span>
+                </label>
+                <span class="switch-text">Show Nades</span>
+            </div>
+
+            <button id="edit-mode-btn" class="edit-mode-btn">Edit Mode</button>
+
         </aside>
+
+        <!-- Homepage -->
+        <div id="home">
+            <h1>CS LineUp</h1>
+            <p>Select a map to get started!</p>
+        </div>
 
         <!-- Central Map Container -->
         <section class="map-section">
@@ -40,17 +57,51 @@
             </div>
         </section>
 
+
+        <!-- Edit Panel -->
+        <div id="edit-panel" class="hidden">
+            <div id="edit-panel-header">Edit Mode</div>
+
+            <p id="edit-step">Click on the map to set the land position</p>
+
+            <label>Name:</label>
+            <input id="edit-title" type="text" placeholder="Enter lineup name">
+
+            <label>Throw Type:</label>
+            <select id="edit-type">
+                <option value="smoke">Smoke</option>
+                <option value="flash">Flash</option>
+                <option value="he">HE</option>
+                <option value="molotov">Molotov</option>
+            </select>
+
+            <label>Throw Type:</label>
+            <input id="edit-throw" type="text" placeholder="Enter throw type">
+
+            <button id="edit-save-btn" class="edit-btn">Save</button>
+            <button id="edit-cancel-btn" class="edit-btn danger">Cancel</button>
+
+
+            <textarea id="edit-output" readonly></textarea>
+
+        </div>
+
+
+
         <!-- SideBar lineup -->
             <aside class="sidebar-right">
                 <h2>Lineups</h2>
-                <div id="lineup-images">
-                    <img id="lineup-placement" src="" alt="Placement">
-                    <img id="lineup-aim" src="" alt="Aim">
+
+                <div id="lineup-block" class="hidden">
+                    <div id="lineup-images">
+                        <img id="lineup-placement" src="" alt="Placement">
+                        <img id="lineup-aim" src="" alt="Aim">
+                    </div>
+
+                    <p id="lineup-throw" class="throw-text"></p>
+
+                    <a id="lineup-video" href="#" target="_blank">Voir la vidéo</a>
                 </div>
-
-                <p id="lineup-throw" class="throw-text"></p>
-
-                <a id="lineup-video" href="#" target="_blank">Voir la vidéo</a>
             </aside>
 
         <div id="debug-coords" class="hidden"></div>

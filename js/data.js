@@ -105,4 +105,18 @@ const nades = [
         aim: "assets/nades/ancient/fbackpillarb_aim.png"
     },
 
+    {
+    "Map": "dust2",
+    "Type": "smoke",
+    "x": 0.509,
+    "y": 0.227,
+    "fromx": 0.487,
+    "fromy": 0.416,
+    "title": "MidToB",
+    "throw": "LeftClick",
+    "video": "",
+    "placement": "",
+    "aim": ""
+    },
+
 ];

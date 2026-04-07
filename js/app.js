@@ -13,7 +13,106 @@ const lineupThrow = document.getElementById('lineup-throw');
 const debugBox = document.getElementById('debug-coords');
 let debugMode = true
 
+//Edition Mode
+let editMode = false;
+
+let editStep = 0;
+let impact = null;
+let launch = null;
+
+const editBtn = document.getElementById('edit-mode-btn');
+const editPanel = document.getElementById('edit-panel');
+const editStepText = document.getElementById('edit-step');
+const editOutput = document.getElementById('edit-output');
+
+function openEditPanel() {
+    editMode = true;
+    editPanel.classList.remove('hidden');
+    editBtn.textContent = 'Editing...';
+    editBtnclassList.add('active');
+    editStep = 0;
+    impact = null;
+    launch = null;
+    editStepText.textContent = 'Click on the impact point';
+}
+
+function closeEditPanel() {
+    editMode = false;
+    editPanel.classList.add('hidden');
+    editBtn.textContent = 'Edit Mode';
+    editBtn.classList.remove('active');
+    editStep = 0;
+    impact = null;
+    launch = null;
+    editStepText.textContent = 'Click on the impact point';
+}
+
+editBtn.addEventListener('click', () => {
+    if (editMode) {
+        closeEditPanel();
+    } else {
+        openEditPanel();
+    }
+});
+
+
+pointsContainer.addEventListener('click', (e) => {
+    if (!editMode) return;
+    
+    const rect = pointsContainer.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    if (editStep === 0) {
+        impact = { x, y };
+        editStep = 1;
+        editStepText.textContent = 'Click on the launch point';
+    } else if (editStep === 1) {
+        launch = { x, y };
+        editStep = 2;
+        editStepText.textContent = 'Nade Info';
+    }
+});
+
+document.getElementById('edit-save-btn').addEventListener('click', () => {
+    if (!impact || !launch) {
+        alert('Please select both impact and launch points.');
+        return;
+    }
+
+    const nadeData = {
+        Map: currentMap,
+        Type: document.getElementById('edit-type').value,
+        x: Number(impact.x.toFixed(3)),
+        y: Number(impact.y.toFixed(3)),
+        fromx: Number(launch.x.toFixed(3)),
+        fromy: Number(launch.y.toFixed(3)),
+        title: document.getElementById('edit-title').value,
+        throw: document.getElementById('edit-throw').value,
+        video: "",
+        placement: "",
+        aim: ""
+    };
+
+    editOutput.value = JSON.stringify(nadeData, null, 4);
+});
+
+document.getElementById('edit-cancel-btn').addEventListener('click', () => {
+    closeEditPanel();
+});
+
+//Fin Edition Mode
+
+
+let nadesVisible = true;
+
 mapContainer = document.getElementById('map-container');
+
+mapContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('point')) return;
+
+    resetNadesView();
+});
 
 mapContainer.addEventListener('mousemove', (e) => {
     if (!debugMode) return;
@@ -31,15 +130,21 @@ mapContainer.addEventListener('mouseleave', () => {
 });
 
 //Map Actuelle
-let currentMap = "ancient";
+let currentMap = null;
 let launchPoint = null;
 let launchLine = null;
 
 //Map Selection
 function loadMap(mapName) {
     currentMap = mapName;
+
+    document.getElementById('home').style.display = 'none';
+    document.getElementById('map-container').style.display = 'block';
+
     mapImage.src = `assets/maps/${mapName}.png`;
+
     pointsContainer.innerHTML = '';
+
     loadPoints(mapName);
 }
 
@@ -59,7 +164,7 @@ function loadPoints(mapName) {
         point.style.top = `${nade.y * 100}%`;
 
         point.addEventListener('click', () => {
-            openNadeInfo(nade);
+            openNadeInfo(nade, point);
         });
         
         pointsContainer.appendChild(point);
@@ -67,7 +172,10 @@ function loadPoints(mapName) {
 }
 
 //Open Nade Info
-function openNadeInfo(nade) {
+function openNadeInfo(nade, clickedPoint = null) {
+
+    document.getElementById('lineup-block').classList.remove('hidden');
+
     lineupPlacement.src = nade.placement || '';
     lineupAim.src = nade.aim || '';
     lineupVideo.href = nade.video || '#';
@@ -92,6 +200,8 @@ function openNadeInfo(nade) {
 
     pointsContainer.appendChild(launchPoint);
 
+
+
     // Line from launch to target
 
     const x1 = nade.fromx * pointsContainer.offsetWidth;
@@ -114,6 +224,17 @@ function openNadeInfo(nade) {
     launchLine.style.top = y1 + 'px';
 
     pointsContainer.appendChild(launchLine);
+
+    //Opacity
+    document.querySelectorAll('.point').forEach(point => {
+        point.classList.remove('dimmed');
+    });
+
+    document.querySelectorAll('.point').forEach(point => {
+        if (point != clickedPoint) {
+            point.classList.add('dimmed');
+        }
+    });
 }
 
 
@@ -125,6 +246,67 @@ mapList.querySelectorAll('li').forEach(li => {
     });
 });
 
+const toggleNadesBtn = document.getElementById('toggle-nades');
 
-//Initial Load
-loadMap(currentMap); 
+toggleNadesBtn.addEventListener('change', () => {
+    nadesVisible = toggleNadesBtn.checked;
+    document.querySelectorAll('.point').forEach(point => {
+        point.style.display = nadesVisible ? 'block' : 'none';
+    });
+
+    if (launchPoint) {
+        launchPoint.style.display = nadesVisible ? 'block' : 'none';
+    }   
+
+    if (launchLine) {
+        launchLine.style.display = nadesVisible ? 'block' : 'none';
+    }
+});
+
+function resetNadesView() {
+
+    document.querySelectorAll('.point').forEach(point => {
+        point.classList.remove('dimmed');
+    });
+
+    if (launchPoint) {
+        launchPoint.remove();
+        launchPoint = null;
+    }   
+
+    if (launchLine) {
+        launchLine.remove();
+        launchLine = null;
+    }
+
+    document.getElementById('lineup-block').classList.add('hidden');
+}
+
+//Drag EditMode
+
+(function() {
+    const panel = document.getElementById('edit-panel');
+    const header = document.getElementById('edit-panel-header');
+
+    let offsetX, offserY = 0;
+    let isDragging = false;
+
+    header.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - panel.offsetLeft;
+        offsetY = e.clientY - panel.offsetTop;
+        panel.style.transition = 'none';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if(!isDragging) return;
+
+        panel.style.left = (e.clientX - offsetX) + 'px';
+        panel.style.top = (e.clientY - offsetY) + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        panel.style.transition = "";
+    });
+})();
