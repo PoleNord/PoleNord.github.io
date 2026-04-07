@@ -34,9 +34,13 @@ function openEditPanel() {
     impact = null;
     launch = null;
     editStepText.textContent = 'Click on the impact point';
+    loadPoints(currentMap);
 }
 
 function closeEditPanel() {
+    document.getElementById('edit-placement-path').value = null;
+    document.getElementById('edit-placement-info').textContent = "";
+    document.querySelectorAll('.point').forEach(point => point.classList.remove('highlight'));
     editMode = false;
     editPanel.classList.add('hidden');
     editBtn.textContent = 'Edit Mode';
@@ -45,7 +49,19 @@ function closeEditPanel() {
     impact = null;
     launch = null;
     editStepText.textContent = 'Click on the impact point';
+    loadPoints(currentMap);
 }
+
+function formatNadeForJSON(nade) {
+    let json = JSON.stringify(nade, null, 4);
+
+    json = json.replace(/"([^"]+)":/g, '$1:');
+    json += ',';
+
+    return json;
+}
+
+
 
 editBtn.addEventListener('click', () => {
     if (editMode) {
@@ -67,6 +83,7 @@ pointsContainer.addEventListener('click', (e) => {
         impact = { x, y };
         editStep = 1;
         editStepText.textContent = 'Click on the launch point';
+
     } else if (editStep === 1) {
         launch = { x, y };
         editStep = 2;
@@ -90,17 +107,34 @@ document.getElementById('edit-save-btn').addEventListener('click', () => {
         title: document.getElementById('edit-title').value,
         throw: document.getElementById('edit-throw').value,
         video: "",
-        placement: "",
+        placement: document.getElementById('edit-placement-path').value || "",
         aim: ""
     };
 
-    editOutput.value = JSON.stringify(nadeData, null, 4);
+    editOutput.value = formatNadeForJSON(nadeData);
 });
 
 document.getElementById('edit-cancel-btn').addEventListener('click', () => {
     closeEditPanel();
 });
 
+document.getElementById('edit-copy-btn').addEventListener('click', () => {
+    const text = editOutput.value.trim();
+
+    if (!text) {
+        editOutput.value = 'No JSON to copy!';
+        return;
+    }
+
+    navigator.clipboard.writeText(text).then(() => {
+        const oldText = document.getElementById('edit-copy-btn').textContent;
+        document.getElementById('edit-copy-btn').textContent = 'Copied!';
+
+        setTimeout(() => {
+            document.getElementById('edit-copy-btn').textContent = oldText;
+        }, 1200);
+    });
+});
 //Fin Edition Mode
 
 
@@ -163,13 +197,21 @@ function loadPoints(mapName) {
         point.style.left = `${nade.x * 100}%`;
         point.style.top = `${nade.y * 100}%`;
 
-        point.addEventListener('click', () => {
+        point.addEventListener('click', (e) => {
+
+            if (editMode) {
+                e.stopPropagation();
+                handleExistingPointClick(nade, point);
+                return;
+            }
+
             openNadeInfo(nade, point);
         });
         
-        pointsContainer.appendChild(point);
+        pointsContainer.appendChild(point);   
     });
 }
+
 
 //Open Nade Info
 function openNadeInfo(nade, clickedPoint = null) {

@@ -78,7 +78,11 @@
             <label>Throw Type:</label>
             <input id="edit-throw" type="text" placeholder="Enter throw type">
 
+            <input id="edit-placement-path" type="hidden">
+            <p id="edit-placement-info" style="font-size: 12px; opacity: 0.7;"></p>
+
             <button id="edit-save-btn" class="edit-btn">Save</button>
+            <button id="edit-copy-btn" class="edit-btn">Copy JSON</button>
             <button id="edit-cancel-btn" class="edit-btn danger">Cancel</button>
 
 
@@ -100,7 +104,7 @@
 
                     <p id="lineup-throw" class="throw-text"></p>
 
-                    <a id="lineup-video" href="#" target="_blank">Voir la vidéo</a>
+                    <a id="lineup-video" href="#" target="_blank" class="hidden">Voir la vidéo</a>
                 </div>
             </aside>
 

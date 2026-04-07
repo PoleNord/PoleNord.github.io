@@ -250,6 +250,12 @@
     opacity: 0.25;
 }
 
+.point.highlight {
+    transform: scale(1.4);
+    box-shadow: 0 0 8px #00ff88;
+    z-index: 5;
+}
+
 .point-launch {
     background: #0bc4f7;
     width: 16px;
@@ -260,6 +266,23 @@
     transform: translate(-50%, -50%);
     pointer-events: none;
     opacity: 0.9;
+}
+
+.point-launch-small {
+    background: #0bc4f7;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.point-launch-small.highlight {
+    transform: scale(1.4);
+    box-shadow: 0 0 8px #00aaff;
 }
 
 .launch-line {
@@ -433,6 +456,15 @@
 #edit-output {
     height: 120px;
     margin: 10px auto;
+}
+
+#edit-copy-btn {
+    background: #2d3a55;
+    border-color: #3f5a88;
+}
+
+#edit-copy-btn:hover {
+    background: #3a4a6d;
 }
 
 
