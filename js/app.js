@@ -8,6 +8,7 @@ const lineupPlacement = document.getElementById('lineup-placement');
 const lineupAim = document.getElementById('lineup-aim');
 const lineupVideo = document.getElementById('lineup-video');
 const lineupThrow = document.getElementById('lineup-throw');
+const lineupName = document.getElementById('lineup-title');
 
 //Debug
 const debugBox = document.getElementById('debug-coords');
@@ -227,10 +228,13 @@ function openNadeInfo(nade, clickedPoint = null) {
 
     document.getElementById('lineup-block').classList.remove('hidden');
 
+    
+
     lineupPlacement.src = nade.placement || '';
     lineupAim.src = nade.aim || '';
     lineupVideo.href = nade.video || '#';
     lineupThrow.textContent = nade.throw || '';
+    lineupName.textContent = nade.title || "";
 
     if (launchPoint) {
         launchPoint.remove();
