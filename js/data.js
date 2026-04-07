@@ -137,7 +137,7 @@ const nades = [
 
     {
     Map: "inferno",
-    Type: "molotov",
+    Type: "molly",
     x: 0.437,
     y: 0.264,
     fromx: 0.502,
