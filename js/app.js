@@ -107,8 +107,8 @@ document.getElementById('edit-save-btn').addEventListener('click', () => {
         title: document.getElementById('edit-title').value,
         throw: document.getElementById('edit-throw').value,
         video: "",
-        placement: document.getElementById('edit-placement-path').value || "",
-        aim: ""
+        placement: "asset/nades/" + currentMap + "/" + title + "_placement",
+        aim: "asset/nades/" + currentMap + "/" + title +"_aim",
     };
 
     editOutput.value = formatNadeForJSON(nadeData);
