@@ -92,10 +92,19 @@ pointsContainer.addEventListener('click', (e) => {
 });
 
 document.getElementById('edit-save-btn').addEventListener('click', () => {
+
     if (!impact || !launch) {
         alert('Please select both impact and launch points.');
         return;
     }
+
+    const rawName = document.getElementById('edit-title').value.trim();
+    const cleanName = rawName
+        .replace(/\s+/g, "")
+        .replace(/[^a-zA-Z0-9]/g, "");
+
+    const placementPath = `assets/nades/${currentMap}/${cleanName}_placement.png`;
+    const aimPath = `assets/nades/${currentMap}/${cleanName}_aim.png`;
 
     const nadeData = {
         Map: currentMap,
@@ -104,11 +113,11 @@ document.getElementById('edit-save-btn').addEventListener('click', () => {
         y: Number(impact.y.toFixed(3)),
         fromx: Number(launch.x.toFixed(3)),
         fromy: Number(launch.y.toFixed(3)),
-        title: document.getElementById('edit-title').value,
+        title: rawName,
         throw: document.getElementById('edit-throw').value,
         video: "",
-        placement: "asset/nades/" + currentMap + "/" + title + "_placement",
-        aim: "asset/nades/" + currentMap + "/" + title +"_aim",
+        placement: placementPath,
+        aim: aimPath,
     };
 
     editOutput.value = formatNadeForJSON(nadeData);
