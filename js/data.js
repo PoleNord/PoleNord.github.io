@@ -105,6 +105,50 @@ const nades = [
         aim: "assets/nades/ancient/fbackpillarb_aim.png"
     },
 
+    ///INFERNO
+
+    {
+    Map: "inferno",
+    Type: "smoke",
+    x: 0.609,
+    y: 0.244,
+    fromx: 0.463,
+    fromy: 0.409,
+    title: "CTBoost",
+    throw: "LeftClick",
+    video: "",
+    placement: "assets/nades/CTBoost_placement.png",
+    aim: "assets/nades/CTBoost_aim.png"
+    },
+
+    {
+    Map: "inferno",
+    Type: "smoke",
+    x: 0.52,
+    y: 0.149,
+    fromx: 0.502,
+    fromy: 0.414,
+    title: "Coffin",
+    throw: "JUMP + LEFTCLICK",
+    video: "",
+    placement: "assets/nades/coffin_placement.png",
+    aim: "assets/nades/coffin_aim.png"
+    },
+
+    {
+    Map: "inferno",
+    Type: "molotov",
+    x: 0.437,
+    y: 0.264,
+    fromx: 0.502,
+    fromy: 0.367,
+    title: "Tripple",
+    throw: "LEFTCLICK",
+    video: "",
+    placement: "assets/nades/tripple_placement.png",
+    aim: "assets/nades/tripple_aim.png"
+    },
+
     {
     "Map": "dust2",
     "Type": "smoke",
