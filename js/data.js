@@ -117,8 +117,8 @@ const nades = [
     title: "CTBoost",
     throw: "LeftClick",
     video: "",
-    placement: "assets/nades/CTBoost_placement.png",
-    aim: "assets/nades/CTBoost_aim.png"
+    placement: "assets/nades/inferno/CTBoost_placement.png",
+    aim: "assets/nades/inferno/CTBoost_aim.png"
     },
 
     {
@@ -131,8 +131,8 @@ const nades = [
     title: "Coffin",
     throw: "JUMP + LEFTCLICK",
     video: "",
-    placement: "assets/nades/coffin_placement.png",
-    aim: "assets/nades/coffin_aim.png"
+    placement: "assets/nades/inferno/coffin_placement.png",
+    aim: "assets/nades/inferno/coffin_aim.png"
     },
 
     {
@@ -145,8 +145,8 @@ const nades = [
     title: "Tripple",
     throw: "LEFTCLICK",
     video: "",
-    placement: "assets/nades/tripple_placement.png",
-    aim: "assets/nades/tripple_aim.png"
+    placement: "assets/nades/inferno/tripple_placement.png",
+    aim: "assets/nades/inferno/tripple_aim.png"
     },
 
     {
