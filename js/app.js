@@ -110,6 +110,7 @@ document.getElementById('edit-save-btn').addEventListener('click', () => {
     const nadeData = {
         Map: currentMap,
         Type: document.getElementById('edit-type').value,
+        Side: document.getElementById('edit-side').value,
         x: Number(impact.x.toFixed(3)),
         y: Number(impact.y.toFixed(3)),
         fromx: Number(launch.x.toFixed(3)),
@@ -365,3 +366,26 @@ function resetNadesView() {
         panel.style.transition = "";
     });
 })();
+
+// LIGHTBOX
+
+lineupPlacement.addEventListener("click", () => {
+    if (lineupPlacement.src) openImageFullScreen(lineupPlacement.src);
+});
+
+lineupAim.addEventListener("click", () => {
+    if (lineupAim.src) openImageFullScreen(lineupAim.src);
+});
+
+const lightbox = document.getElementById("img-lightbox");
+const lightboxImg = document.getElementById("img-lightbox-content");
+
+function openImageFullScreen(src) {
+    lightboxImg.src = src;
+    lightbox.classList.remove("hidden");
+}
+
+lightbox.addEventListener("click", () => {
+    lightbox.classList.add("hidden");
+});
+

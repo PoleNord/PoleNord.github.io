@@ -3,6 +3,7 @@ const nades = [
     {
         Map: "ancient",
         Type: "smoke",
+        Side: "T",
         x: 0.48,
         y: 0.39,
         fromx: 0.455,
@@ -18,6 +19,7 @@ const nades = [
     {
         Map: "ancient",
         Type: "smoke",
+        Side: "T",
         x: 0.53,
         y: 0.57,
         fromx: 0.505,
@@ -33,6 +35,7 @@ const nades = [
     {
         Map: "ancient",
         Type: "smoke",
+        Side: "T",
         x: 0.71,
         y: 0.35,
         fromx: 0.82,
@@ -48,6 +51,7 @@ const nades = [
     {
         Map: "ancient",
         Type: "smoke",
+        Side: "T",
         x: 0.81,
         y: 0.35,
         fromx: 0.82,
@@ -63,6 +67,7 @@ const nades = [
     {
         Map: "ancient",
         Type: "smoke",
+        Side: "T",
         x: 0.69,
         y: 0.38,
         fromx: 0.82,
@@ -78,6 +83,7 @@ const nades = [
     {
         Map: "ancient",
         Type: "molly",
+        Side: "T",
         x: 0.71,
         y: 0.475,
         fromx: 0.80,
@@ -93,6 +99,7 @@ const nades = [
     {
         Map: "ancient",
         Type: "flash",
+        Side: "T",
         x: 0.71,
         y: 0.39,
         fromx: 0.80,
@@ -105,11 +112,57 @@ const nades = [
         aim: "assets/nades/ancient/fbackpillarb_aim.png"
     },
 
+    {
+    Map: "ancient",
+    Type: "smoke",
+    Side: "T",
+    x: 0.307,
+    y: 0.323,
+    fromx: 0.2,
+    fromy: 0.573,
+    title: "Donuts by Stairs",
+    throw: "Jump + LeftClick",
+    video: "",
+    placement: "assets/nades/ancient/DonutsByStairs_placement.png",
+    aim: "assets/nades/ancient/DonutsByStairs_aim.png"
+    },
+
+    {
+    Map: "ancient",
+    Type: "smoke",
+    Side: "T",
+    x: 0.357,
+    y: 0.223,
+    fromx: 0.2,
+    fromy: 0.573,
+    title: "CT by Stairs",
+    throw: "Jump + LeftClick",
+    video: "",
+    placement: "assets/nades/ancient/CTbyStairs_placement.png",
+    aim: "assets/nades/ancient/CTbyStairs_aim.png"
+    },
+
+    {
+    Map: "ancient",
+    Type: "smoke",
+    Side: "T",
+    x: 0.261,
+    y: 0.196,
+    fromx: 0.199,
+    fromy: 0.573,
+    title: "Temple By Stairs",
+    throw: "Jump + LeftClick",
+    video: "",
+    placement: "assets/nades/ancient/TempleByStairs_placement.png",
+    aim: "assets/nades/ancient/TempleByStairs_aim.png"
+    },
+
     ///INFERNO
 
     {
     Map: "inferno",
     Type: "smoke",
+    Side: "T",
     x: 0.609,
     y: 0.244,
     fromx: 0.463,
@@ -124,6 +177,7 @@ const nades = [
     {
     Map: "inferno",
     Type: "smoke",
+    Side: "T",
     x: 0.52,
     y: 0.149,
     fromx: 0.502,
@@ -138,6 +192,7 @@ const nades = [
     {
     Map: "inferno",
     Type: "molly",
+    Side: "T",
     x: 0.437,
     y: 0.264,
     fromx: 0.502,
@@ -149,18 +204,104 @@ const nades = [
     aim: "assets/nades/inferno/tripple_aim.png"
     },
 
+    // OVERPASS
+
     {
-    "Map": "dust2",
-    "Type": "smoke",
-    "x": 0.509,
-    "y": 0.227,
-    "fromx": 0.487,
-    "fromy": 0.416,
-    "title": "MidToB",
-    "throw": "LeftClick",
-    "video": "",
-    "placement": "",
-    "aim": ""
+    Map: "overpass",
+    Type: "smoke",
+    Side: "CT",
+    x: 0.811,
+    y: 0.457,
+    fromx: 0.51,
+    fromy: 0.147,
+    title: "Monster",
+    throw: "LeftClick + Jump",
+    video: "",
+    placement: "assets/nades/overpass/Monster_placement.png",
+    aim: "assets/nades/overpass/Monster_aim.png"
     },
+
+    // ANUBIS
+
+    {
+    Map: "anubis",
+    Type: "smoke",
+    Side: "T",
+    x: 0.359,
+    y: 0.557,
+    fromx: 0.281,
+    fromy: 0.68,
+    title: "CAVE from B Long",
+    throw: "Jump + LeftClick",
+    video: "",
+    placement: "assets/nades/anubis/CAVEfromBLong_placement.png",
+    aim: "assets/nades/anubis/CAVEfromBLong_aim.png"
+    },
+
+    {
+    Map: "anubis",
+    Type: "smoke",
+    Side: "T",
+    x: 0.365,
+    y: 0.518,
+    fromx: 0.281,
+    fromy: 0.68,
+    title: "BackSide from B Long",
+    throw: "Jump + LeftClick",
+    video: "",
+    placement: "assets/nades/anubis/BackSidefromBLong_placement.png",
+    aim: "assets/nades/anubis/BackSidefromBLong_aim.png"
+    },
+
+    {
+    Map: "anubis",
+    Type: "smoke",
+    Side: "T",
+    x: 0.291,
+    y: 0.477,
+    fromx: 0.281,
+    fromy: 0.68,
+    title: "B Site from B Long",
+    throw: "Jump + LeftClick",
+    video: "",
+    placement: "assets/nades/anubis/BSitefromBLong_placement.png",
+    aim: "assets/nades/anubis/BSitefromBLong_aim.png"
+    },
+
+    {
+    Map: "anubis",
+    Type: "smoke",
+    Side: "T",
+    x: 0.505,
+    y: 0.476,
+    fromx: 0.471,
+    fromy: 0.942,
+    title: "Window Mid from T Spawn",
+    throw: "Jump + LeftClick",
+    video: "",
+    placement: "assets/nades/anubis/WindowMidfromTSpawn_placement.png",
+    aim: "assets/nades/anubis/WindowMidfromTSpawn_aim.png"
+    },
+
+    {
+    Map: "anubis",
+    Type: "smoke",
+    Side: "T",
+    x: 0.44,
+    y: 0.598,
+    fromx: 0.471,
+    fromy: 0.942,
+    title: "Cave from T Spawn",
+    throw: "Jump + LeftClick",
+    video: "",
+    placement: "assets/nades/anubis/CavefromTSpawn_placement.png",
+    aim: "assets/nades/anubis/CavefromTSpawn_aim.png"
+    },
+
+    // MIRAGE
+
+    // NUKE
+
+    // DUST2
 
 ];
