@@ -221,6 +221,21 @@ const nades = [
     aim: "assets/nades/overpass/Monster_aim.png"
     },
 
+    {
+    Map: "overpass",
+    Type: "smoke",
+    Side: "T",
+    x: 0.611,
+    y: 0.753,
+    fromx: 0.517,
+    fromy: 0.305,
+    title: "T Ramp from A-Main",
+    throw: "Jump + LeftClick",
+    video: "",
+    placement: "assets/nades/overpass/TRampfromAMain_placement.png",
+    aim: "assets/nades/overpass/TRampfromAMain_aim.png"
+    },
+
     // ANUBIS
 
     {
