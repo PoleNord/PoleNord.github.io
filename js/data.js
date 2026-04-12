@@ -204,6 +204,21 @@ const nades = [
     aim: "assets/nades/inferno/tripple_aim.png"
     },
 
+    {
+    Map: "inferno",
+    Type: "flash",
+    Side: "T",
+    x: 0.651,
+    y: 0.759,
+    fromx: 0.429,
+    fromy: 0.774,
+    title: "Falsh Boiller",
+    throw: "Jump + LeftClick",
+    video: "",
+    placement: "assets/nades/inferno/FalshBoiller_placement.png",
+    aim: "assets/nades/inferno/FalshBoiller_aim.png"
+    },
+
     // OVERPASS
 
     {
